@@ -4,7 +4,7 @@ os.system('cls')
 def criar_contatos(contato,numero):
     try:
         with open('Agenda_contatos.txt','a') as file:
-            file.write(f'{contato}: {numero}\n ')
+            file.write(f'{contato}: {numero}\n')
     except FileNotFoundError:
         print('O Arquivo não foi Encontrado')
 
@@ -13,7 +13,7 @@ def ler_contatos():
         with open('Agenda_contatos.txt','r') as file:
             print(file.read())
     except FileNotFoundError:
-        print('nenhum contato foi gerado')
+        print('Arquivo não encontrado')
 
 def edit_contato ():
     try:
@@ -25,20 +25,21 @@ def apagar_arquivo():
     arquivo=('Agenda_contatos.txt')
     if os.path.exists(arquivo):
         os.remove(arquivo)
+        os.system("cls")
         print("Todos os contatos foram removidos")
     elif(FileNotFoundError):
+        os.system("cls")
         print('Arquivo não encontrado')
 
-print(''''BEM VINDO A SUA AGENDA DE CONTATOS:
+while True:
+    option=int(input('''BEM VINDO A SUA AGENDA DE CONTATOS:
  DIGITE:
  1-Adicionar um Contato
  2-Ler um Contato
  3-Deletar um Contato
  4-Atualizar um Contato
  5-Sair
-''')
-while True:
-    option=int(input('digite uma opção '))
+'''))
     if option == 1:
         contato=input('digite o nome do contato ')
         numero=input('digite o numero do contato ')
@@ -46,9 +47,13 @@ while True:
         if digitos == 8:
             digitos=str(int)
             criar_contatos(contato,numero)
+            os.system("cls")
+            print("Criado com sucesso")
         else:
-            print('digite novamente')
+            os.system("cls")
+            print("Digite Novamente")
     elif option==2:
+        os.system('cls')
         ler_contatos()
     elif option==3:
         while True:
@@ -64,14 +69,18 @@ while True:
                     break
                 elif fim == 'n':
                     print('Retornando...')
+                    os.system('cls')
                     break
                 else:
-                    print("Digite um valido")
+                    os.system("cls")
+                    print("Digito incorreto: ")
             elif confirmar==2:
-                print('Em desenvolvimento')
+                os.system("cls")
+                print('Em desenvolvimento...')
                 break
             else:
-                print('Digite novamente')
+                os.system('cls')
+                print('Digite novamente:')
                 continue
     elif option==5:
         break
