@@ -15,6 +15,20 @@ def ler_contatos():
     except FileNotFoundError:
         print('nenhum contato foi gerado')
 
+def edit_contato ():
+    try:
+        ...
+    except FileNotFoundError:
+        print('O Arquivo ainda não foi criado')
+
+def apagar_arquivo():
+    arquivo=('Agenda_contatos.txt')
+    if os.path.exists(arquivo):
+        os.remove(arquivo)
+        print("Todos os contatos foram removidos")
+    elif(FileNotFoundError):
+        print('Arquivo não encontrado')
+
 print(''''BEM VINDO A SUA AGENDA DE CONTATOS:
  DIGITE:
  1-Adicionar um Contato
@@ -32,10 +46,32 @@ while True:
         if digitos == 8:
             digitos=str(int)
             criar_contatos(contato,numero)
-        elif(digitos>8 or digitos<8):
+        else:
             print('digite novamente')
-            continue
     elif option==2:
         ler_contatos()
+    elif option==3:
+        while True:
+            confirmar=int(input('''BEM VINDO AO MENU DE DELETE 
+    Digite:
+    1-Deletar toda a Agenda
+    2-Deletar um Contato especifico 
+    '''))
+            if confirmar==1:
+                fim=input("DESEJA CANCELAR TODOS OS CONTATOS?(S/n) ").lower()
+                if fim == 's':
+                    apagar_arquivo()
+                    break
+                elif fim == 'n':
+                    print('Retornando...')
+                    break
+                else:
+                    print("Digite um valido")
+            elif confirmar==2:
+                print('Em desenvolvimento')
+                break
+            else:
+                print('Digite novamente')
+                continue
     elif option==5:
         break
