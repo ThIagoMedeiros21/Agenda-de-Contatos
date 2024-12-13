@@ -31,6 +31,26 @@ def apagar_arquivo():
         os.system("cls")
         print('Arquivo não encontrado')
 
+def deletar_contato(contato):
+    try:
+        with open('Agenda_contatos.txt', 'r') as file:
+            linhas = file.readlines()
+        encontrado = False
+        with open('Agenda_contatos.txt', 'w') as file:
+            for i in linhas:
+                if not i.startswith(f'{contato}:'):
+                    file.write(i)
+                else:
+                    encontrado = True
+        if encontrado:
+            os.system("cls")
+            print(f'O contato "{contato}" foi removido com sucesso.')
+        else:
+            os.system("cls")
+            print(f'Contato "{contato}" não encontrado.')
+    except FileNotFoundError:
+        print('O Arquivo ainda não foi criado')
+
 while True:
     option=int(input('''BEM VINDO A SUA AGENDA DE CONTATOS:
  DIGITE:
@@ -41,12 +61,11 @@ while True:
  5-Sair
 '''))
     if option == 1:
-        contato=input('digite o nome do contato ')
-        numero=input('digite o numero do contato ')
+        contato=input('Digite o nome do contato: ')
+        numero=input('Digite o número do contato: ')
         digitos=len(numero)
         if digitos == 8:
-            digitos=str(int)
-            criar_contatos(contato,numero)
+            criar_contatos(contato, numero)
             os.system("cls")
             print("Criado com sucesso")
         else:
@@ -60,23 +79,24 @@ while True:
             confirmar=int(input('''BEM VINDO AO MENU DE DELETE 
     Digite:
     1-Deletar toda a Agenda
-    2-Deletar um Contato especifico 
+    2-Deletar um Contato específico 
     '''))
             if confirmar==1:
-                fim=input("DESEJA CANCELAR TODOS OS CONTATOS?(S/n) ").lower()
+                fim=input("DESEJA CANCELAR TODOS OS CONTATOS? (S/n): ").lower()
                 if fim == 's':
                     apagar_arquivo()
                     break
-                elif fim == 'n':
+                elif fim =='n':
                     print('Retornando...')
                     os.system('cls')
                     break
                 else:
                     os.system("cls")
-                    print("Digito incorreto: ")
-            elif confirmar==2:
+                    print("Digito incorreto")
+            elif confirmar == 2:
                 os.system("cls")
-                print('Em desenvolvimento...')
+                contato=input("Digite o nome do contato a ser removido: ")
+                deletar_contato(contato)
                 break
             else:
                 os.system('cls')
