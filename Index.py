@@ -4,7 +4,7 @@ os.system('cls')
 def criar_contatos(contato,numero):
     try:
         with open('Agenda_contatos.txt','a') as file:
-            file.write(f'{contato}: {numero}\n')
+            file.write(f'{contato}:+55{numero}\n')
     except FileNotFoundError:
         print('O Arquivo não foi Encontrado')
 
@@ -28,9 +28,9 @@ def edit_contato(contato, contatonovo, novonum):
                     encontrado=True
         if encontrado:
             with open("Agenda_contatos.txt", 'a') as file:
-                file.write(f'{contatonovo}: {novonum}\n')
+                file.write(f'{contatonovo}:+55{novonum}\n')
             os.system("cls")
-            print(f"Contato '{contato}' atualizado para '{contatonovo}: {novonum}'")
+            print(f"Contato '{contato}' atualizado")
         else:
             os.system("cls")
             print(f"Contato '{contato}' não encontrado.")
@@ -77,9 +77,9 @@ while True:
 '''))
     if option==1:
         contato=input('Digite o nome do contato: ')
-        numero=input('Digite o número do contato: ')
+        numero=input('Digite o número do contato(com dd, e o 9, sem o +55): ')
         digitos=len(numero)
-        if digitos == 8:
+        if digitos == 11:
             criar_contatos(contato, numero)
             os.system("cls")
             print("Criado com sucesso")
@@ -125,8 +125,8 @@ while True:
         os.system("cls")
         contato=input("Digite o nome do contato que deseja alterar: ")
         novo_contato=input("Digite o nome corretamente ")
-        numero=input("digite o novo numero ")
-        if len(numero)==8:
+        numero=input("digite o novo numero(com dd e o 9 e sem o +): ")
+        if len(numero)==11:
             edit_contato(contato,novo_contato,numero)
         else:
             print("Digite novamente")
