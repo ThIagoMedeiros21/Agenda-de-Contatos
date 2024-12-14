@@ -75,7 +75,7 @@ while True:
  4-Atualizar um Contato
  5-Sair
 '''))
-    if option == 1:
+    if option==1:
         contato=input('Digite o nome do contato: ')
         numero=input('Digite o número do contato: ')
         digitos=len(numero)
@@ -125,7 +125,7 @@ while True:
         os.system("cls")
         contato=input("Digite o nome do contato que deseja alterar: ")
         novo_contato=input("Digite o nome corretamente ")
-        numero=input("digite o novo numero")
+        numero=input("digite o novo numero ")
         if len(numero)==8:
             edit_contato(contato,novo_contato,numero)
         else:
