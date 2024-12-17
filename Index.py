@@ -35,6 +35,7 @@ def edit_contato(contato, contatonovo, novonum):
             os.system("cls")
             print(f"Contato '{contato}' não encontrado.")
     except FileNotFoundError:
+        os.system("cls")
         print('O Arquivo ainda não foi criado.')
 def apagar_arquivo():
     arquivo=('Agenda_contatos.txt')
@@ -77,16 +78,20 @@ while True:
     5-Sair
     '''))
         if option==1:
-            contato=input('Digite o nome do contato: ')
-            numero=input('Digite o número do contato(com dd, e o 9, sem o +55): ')
-            digitos=len(numero)
-            if digitos == 11:
-                criar_contatos(contato, numero)
-                os.system("cls")
-                print("Criado com sucesso")
-            else:
-                os.system("cls")
-                print("Digite Novamente")
+            try:
+                contato=input('Digite o nome do contato: ')
+                numero=int(input('Digite o número do contato(com dd, e o 9, sem o +55): '))
+                num=str(numero)
+                digitos=len(num)
+                if digitos == 11:
+                    criar_contatos(contato, numero)
+                    os.system("cls")
+                    print("Criado com sucesso")
+                else:
+                    os.system("cls")
+                    print("Digite Novamente")
+            except ValueError:
+                print("Digite um inteiro")
         elif option==2:
             os.system('cls')
             ler_contatos()
@@ -127,17 +132,20 @@ while True:
                     os.system("cls")
                     print("Digite um inteiro")
         elif option==4:
+            try:
                 os.system("cls")
                 contato=input("Digite o nome do contato que deseja alterar: ")
-                novo_contato=input("Digite o nome corretamente ")
-                numero=input("digite o novo numero(com dd e o 9 e sem o +): ")
-                if len(numero)==11:
-                    edit_contato(contato,novo_contato,numero)
-                    os.system("cls")
-                    print("contato atualizado com sucesso")
+                novo_contato=input("Digite o novo nome corretamente: ")
+                numero=int(input("Digite o novo número(com dd, e o 9, sem o +55): "))
+                num=str(numero)
+                if len(num) == 11:
+                    edit_contato(contato, novo_contato, numero)
                 else:
                     os.system("cls")
                     print("Digite novamente")
+            except ValueError:
+                os.system("cls")
+                print("Digite um número inteiro")
 
         elif option==5:
                 break
