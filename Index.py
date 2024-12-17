@@ -67,69 +67,80 @@ def deletar_contato(contato):
         print('O Arquivo ainda não foi criado')
 
 while True:
-    option=int(input('''BEM VINDO A SUA AGENDA DE CONTATOS:
- DIGITE:
- 1-Adicionar um Contato
- 2-Ler um Contato
- 3-Deletar um Contato
- 4-Atualizar um Contato
- 5-Sair
-'''))
-    if option==1:
-        contato=input('Digite o nome do contato: ')
-        numero=input('Digite o número do contato(com dd, e o 9, sem o +55): ')
-        digitos=len(numero)
-        if digitos == 11:
-            criar_contatos(contato, numero)
-            os.system("cls")
-            print("Criado com sucesso")
-        else:
-            os.system("cls")
-            print("Digite Novamente")
-    elif option==2:
-        os.system('cls')
-        ler_contatos()
-    elif option==3:
-        while True:
-            confirmar=int(input('''BEM VINDO AO MENU DE DELETE 
-    Digite:
-    1-Deletar toda a Agenda
-    2-Deletar um Contato específico 
-    3-SAIR
+    try:
+        option=int(input('''BEM VINDO A SUA AGENDA DE CONTATOS:
+    DIGITE:
+    1-Adicionar um Contato
+    2-Ler um Contato
+    3-Deletar um Contato
+    4-Atualizar um Contato
+    5-Sair
     '''))
-            if confirmar==1:
-                fim=input("DESEJA CANCELAR TODOS OS CONTATOS? (S/n): ").lower()
-                if fim == 's':
-                    apagar_arquivo()
-                    break
-                elif fim =='n':
-                    print('Retornando...')
-                    os.system('cls')
-                    break
+        if option==1:
+            contato=input('Digite o nome do contato: ')
+            numero=input('Digite o número do contato(com dd, e o 9, sem o +55): ')
+            digitos=len(numero)
+            if digitos == 11:
+                criar_contatos(contato, numero)
+                os.system("cls")
+                print("Criado com sucesso")
+            else:
+                os.system("cls")
+                print("Digite Novamente")
+        elif option==2:
+            os.system('cls')
+            ler_contatos()
+        elif option==3:
+            while True:
+                try:
+                    confirmar=int(input('''BEM VINDO AO MENU DE DELETE 
+            Digite:
+            1-Deletar toda a Agenda
+            2-Deletar um Contato específico 
+            3-SAIR
+            '''))
+                    if confirmar==1:
+                        fim=input("DESEJA CANCELAR TODOS OS CONTATOS? (S/n): ").lower()
+                        if fim == 's':
+                            apagar_arquivo()
+                            break
+                        elif fim =='n':
+                            print('Retornando...')
+                            os.system('cls')
+                            break
+                        else:
+                            os.system("cls")
+                            print("Digito incorreto")
+                    elif confirmar == 2:
+                        os.system("cls")
+                        contato=input("Digite o nome do contato a ser removido: ")
+                        deletar_contato(contato)
+                        break
+                    elif(confirmar==3):
+                        os.system("cls")
+                        break
+                    else:
+                        os.system('cls')
+                        print('Digite novamente:')
+                        continue
+                except ValueError:
+                    os.system("cls")
+                    print("Digite um inteiro")
+        elif option==4:
+                os.system("cls")
+                contato=input("Digite o nome do contato que deseja alterar: ")
+                novo_contato=input("Digite o nome corretamente ")
+                numero=input("digite o novo numero(com dd e o 9 e sem o +): ")
+                if len(numero)==11:
+                    edit_contato(contato,novo_contato,numero)
+                    os.system("cls")
+                    print("contato atualizado com sucesso")
                 else:
                     os.system("cls")
-                    print("Digito incorreto")
-            elif confirmar == 2:
-                os.system("cls")
-                contato=input("Digite o nome do contato a ser removido: ")
-                deletar_contato(contato)
-                break
-            elif(confirmar==3):
-                os.system("cls")
-                break
-            else:
-                os.system('cls')
-                print('Digite novamente:')
-                continue
-    elif option==4:
-        os.system("cls")
-        contato=input("Digite o nome do contato que deseja alterar: ")
-        novo_contato=input("Digite o nome corretamente ")
-        numero=input("digite o novo numero(com dd e o 9 e sem o +): ")
-        if len(numero)==11:
-            edit_contato(contato,novo_contato,numero)
-        else:
-            print("Digite novamente")
+                    print("Digite novamente")
 
-    elif option==5:
-        break
+        elif option==5:
+                break
+    except ValueError:
+        os.system("cls")
+        print("Digite um inteiro")
