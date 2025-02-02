@@ -69,14 +69,7 @@ def deletar_contato(contato):
 
 while True:
     try:
-        option=int(input('''BEM VINDO A SUA AGENDA DE CONTATOS:
-    DIGITE:
-    1-Adicionar um Contato
-    2-Ler um Contato
-    3-Deletar um Contato
-    4-Atualizar um Contato
-    5-Sair
-    '''))
+        option=int(input('BEM VINDO A SUA AGENDA DE CONTATOS:\nDIGITE:\n1-ADCIONAR UM CONTATO\n2-LER TODOS OS CONTATOS\n3-DELETAR CONTATOS\n4-ATUALIZAR CONTATOS\n5-SAIR\n'))
         if option==1:
             try:
                 contato=input('Digite o nome do contato: ')
@@ -98,12 +91,7 @@ while True:
         elif option==3:
             while True:
                 try:
-                    confirmar=int(input('''BEM VINDO AO MENU DE DELETE 
-            Digite:
-            1-Deletar toda a Agenda
-            2-Deletar um Contato específico 
-            3-SAIR
-            '''))
+                    confirmar=int(input('BEM VINDO AO MENU DE DELETE\nDigite:\n1-Deletar toda a Agenda\n2-Deletar um Contato específico\n3-SAIR\n'))
                     if confirmar==1:
                         fim=input("DESEJA CANCELAR TODOS OS CONTATOS? (S/n): ").lower()
                         if fim == 's':
@@ -121,7 +109,7 @@ while True:
                         contato=input("Digite o nome do contato a ser removido: ")
                         deletar_contato(contato)
                         break
-                    elif(confirmar==3):
+                    elif confirmar == 3:
                         os.system("cls")
                         break
                     else:
@@ -131,7 +119,7 @@ while True:
                 except ValueError:
                     os.system("cls")
                     print("Digite um inteiro")
-        elif option==4:
+        elif option == 4:
             try:
                 os.system("cls")
                 contato=input("Digite o nome do contato que deseja alterar: ")
